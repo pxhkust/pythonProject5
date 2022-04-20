@@ -13,6 +13,8 @@ df = pd.DataFrame(columns=['Year', 'Range', 'Baseline_Landfill', 'Baseline_Virgi
 df.set_index(['Year', 'Range'], inplace=True)
 df0 = df.reorder_levels(['Year', 'Range']).sort_index()
 
+plt.figure(figsize=(10, 12))
+
 colors = plt.cm.Paired.colors
 
 df0 = df0.unstack(level=-1) # unstack the 'Context' column
@@ -23,6 +25,7 @@ df0['Recycling_Waste_paper'].plot(kind='bar', color=[colors[5], colors[4]], rot=
 
 legend_labels = [f'{val} ({Year})' for val, Year in df0.columns]
 ax.legend(legend_labels)
+
 
 plt.tight_layout()
 plt.show()
